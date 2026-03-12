@@ -53,6 +53,11 @@ function commitEdit() {
 }
 
 function cancelEdit() {
+  // Reset values before setting editing = false so that the blur event on the
+  // input (fired when Vue removes it from the DOM) doesn't trigger commitEdit
+  // with changed data.
+  editText.value = props.text
+  editPriority.value = props.priority
   editing.value = false
 }
 
