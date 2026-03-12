@@ -46,7 +46,7 @@ function startEdit() {
 
 function commitEdit() {
   const trimmed = editText.value.trim()
-  if (trimmed && trimmed !== props.text || editPriority.value !== props.priority) {
+  if (trimmed && (trimmed !== props.text || editPriority.value !== props.priority)) {
     emit('edit', props.id, trimmed || props.text, editPriority.value)
   }
   editing.value = false
@@ -122,7 +122,6 @@ function handleKeydown(e: KeyboardEvent) {
         maxlength="500"
         aria-label="Edit todo text"
         class="flex-1 min-w-0 rounded-md border border-border bg-background px-2 py-0.5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        @blur="commitEdit"
         @keydown="handleKeydown"
       />
       <!-- Priority toggle while editing -->
